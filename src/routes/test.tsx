@@ -89,7 +89,7 @@ function TestPage() {
   );
 
   useEffect(() => {
-    if (!session) {
+    if (!session && !finishing.current) {
       void navigate({ to: "/" });
     }
   }, [session, navigate]);

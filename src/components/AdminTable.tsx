@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import type { ResultRow } from "@/lib/results";
 
 const STATUS_LABEL: Record<string, string> = {
@@ -28,8 +28,8 @@ export function AdminTable({ rows }: { rows: ResultRow[] }) {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <>
-              <tr key={row.id} className="border-t border-border align-top">
+            <Fragment key={row.id}>
+              <tr className="border-t border-border align-top">
                 <td className="px-4 py-3 font-mono text-xs text-foreground">{row.created_at}</td>
                 <td className="px-4 py-3 text-foreground">{row.employee_id}</td>
                 <td className="px-4 py-3">
@@ -56,7 +56,7 @@ export function AdminTable({ rows }: { rows: ResultRow[] }) {
                 </td>
               </tr>
               {expanded === row.id ? (
-                <tr key={`${row.id}-details`} className="border-t border-border bg-muted/50">
+                <tr className="border-t border-border bg-muted/50">
                   <td colSpan={5} className="px-4 py-3 text-foreground">
                     <p className="text-sm">
                       Длительность: {row.duration_sec} сек. Вопросы с ошибками:
@@ -78,7 +78,7 @@ export function AdminTable({ rows }: { rows: ResultRow[] }) {
                   </td>
                 </tr>
               ) : null}
-            </>
+            </Fragment>
           ))}
         </tbody>
       </table>
